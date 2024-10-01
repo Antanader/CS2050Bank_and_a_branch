@@ -1,16 +1,17 @@
 /*
-Name: Anthony T
+Name: Anthony Talavera
 Date: 9.20.2024
 Program: Checking Account Class
  */
 
-class CheckingAccount extends BankAccount {
+class CheckingAccount extends Account {
     private double overdraft;
 
 
     //Setting Checking Account
     public CheckingAccount(String accountNumber, String accountHolderName, double balance) {
         super(accountNumber, accountHolderName, balance);
+        getAccount();
     }
 
     // Getters and Setters
@@ -18,9 +19,10 @@ class CheckingAccount extends BankAccount {
 
     //Get Account Info
     public void getAccount() {
-        System.out.println("Account Number: " + getAccountNumber());
-        System.out.println("Account Name: " + getAccountName());
-        System.out.println("Balance: " + getBalance());
+        System.out.println("Checking Account Number: " + getAccountNumber());
+        System.out.println("Checking Account Name: " + getAccountName());
+        System.out.println("Checking Balance: " + getBalance());
+        System.out.println("\n");
     }
 
 
@@ -38,5 +40,10 @@ class CheckingAccount extends BankAccount {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Checking Account Number: " + getAccountNumber() + "\n" + "Checking Account Name: " + getAccountName() + "\n"+ "Checking Balance: $" + getBalance() + "\n";
     }
 } //end

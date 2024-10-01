@@ -1,16 +1,17 @@
 /*
-Name: Anthony T
+Name: Anthony Talavera
 Date: 9.20.2024
 Program: Saving Account Class
  */
 
-class SavingsAccount extends BankAccount {
+class SavingsAccount extends Account {
     private double interestRate;
 
     // Saving Account
-    public SavingsAccount(String accountNumber, String accountHolderName, double balance, double interestRate) {
+    public SavingsAccount(String accountNumber, String accountHolderName, double balance) {
         super(accountNumber, accountHolderName, balance);
-        this.interestRate = interestRate;
+        //this.interestRate = interestRate;
+        getAccount();
     }
 
     // Getters and Setters
@@ -27,10 +28,11 @@ class SavingsAccount extends BankAccount {
 
     //Get Account Info
     public void getAccount(){
-        System.out.println("Account Number: " + getAccountNumber());
-        System.out.println("Account Name: " + getAccountName());
-        System.out.println("Balance: " + getBalance());
-        System.out.println("Interest Rate: " + getInterestRate());
+        System.out.println("Saving Account Number: " + getAccountNumber());
+        System.out.println("Saving Account Name: " + getAccountName());
+        System.out.println("Saving Balance: " + getBalance());
+        System.out.println("\n");
+        //System.out.println("Interest Rate: " + getInterestRate());
     }
 
     // Implement abstract methods
@@ -51,5 +53,10 @@ class SavingsAccount extends BankAccount {
     // Applying Interest
     public void applyInterest() {
         setBalance(getBalance() + (getBalance() * interestRate));
+    }
+
+    @Override
+    public String toString() {
+        return "Saving Account Number: " + getAccountNumber() + "\n" + "Saving Account Name: " + getAccountName() + "\n"+ "Saving Balance: $" + getBalance() + "\n";
     }
 }
