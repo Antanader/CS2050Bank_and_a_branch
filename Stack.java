@@ -1,5 +1,5 @@
 /*
-Name: Anthony Talavera
+Name: Anthony T
 Date: 9.30.2024
 Program: Stack Class
  */
