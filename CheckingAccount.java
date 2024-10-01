@@ -1,5 +1,5 @@
 /*
-Name: Anthony Talavera
+Name: Anthony T
 Date: 9.20.2024
 Program: Checking Account Class
  */
