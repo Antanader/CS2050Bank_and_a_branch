@@ -5,6 +5,7 @@ Program: Bank Test Program
  */
 
 import java.io.*;
+import java.util.*;
 
 public class ProgramTest {
     public static void main(String[] args) {
@@ -59,6 +60,63 @@ public class ProgramTest {
             }
         }
 
+        //Customers Names:
+        String[] customerNames = {
+                "Osiris Wang", "Dorian Morris", "Presley Robles", "Collins Burke",
+                "Hayden Greene", "Malik Baxter", "Ryann Wiley", "Briggs Thomas",
+                "Reuben Peterson", "Lara McKinney"
+        };
+
+        CustomQueue queue = new CustomQueue();
+        Customer[] customers = new Customer[10];
+        for (int i = 0; i < customerNames.length; i++) {
+            customers[i] = new Customer(customerNames[i]);
+            queue.enqueue(customers[i]);
+        }
+
+        // Create a stack of accounts
+        Stack<Customer> accountStack = new Stack<>();
+        for (int i = 0; i < 10; i++) {
+            accountStack.push(new Customer(customerNames[i]));
+        }
+
+        //Number Generator
+        Random random = new Random();
+
+        //30 loops
+
+        for (int i=0; i<30;i++){
+            Customer customer = queue.dequeue();
+            //Assign an account if they don't
+            if (Account.getAccountNumber() == null) {
+                Customer accountFromStack = accountStack.pop();
+                Objects.requireNonNull(customer).setAccountNumber(Account.getAccountNumber());
+                customer.setBalance(accountFromStack.getBalance());
+            }
+
+            double randomValue = random.nextInt(1000) - 500; // Values between -500 and 500
+
+            // check negative or positive
+            if (randomValue > 0) {  // Deposit for positive
+                Objects.requireNonNull(customer).deposit(randomValue);
+                System.out.println("Action: " + (i + 1) + " " + customer.getAccountName() + " deposits: $" + randomValue);
+            } else {  // Withdraw for negative or zero amounts
+                Objects.requireNonNull(customer).withdraw(-randomValue);  // Withdraw
+                System.out.println("Action: " + (i + 1) + " " + customer.getAccountName() + " withdraws: $" + -randomValue);
+            }
+            // Re-add the customer to the rear of the queue
+            queue.enqueue(customer);
+        }
+        // Print the final details of each customer
+        System.out.println("\nFinal Customer Details:");
+        while (!queue.isEmpty()) {
+            Customer customer = queue.dequeue();
+            Objects.requireNonNull(customer).getAccount();
+        }
+
+
+
+        /*
         //Program 6 - The Customers
         String[] customerNames = {"Osiris Wang", "Dorian Morris", "Presley Robles","Collins Burke","Hayden Greene", "Malik Baxter", "Ryann Wiley", "Briggs Thomas", "Reuben Peterson", "Lara McKinney"};
 
@@ -90,6 +148,9 @@ public class ProgramTest {
             System.out.println("An error occurred while writing to the file.");
             e.printStackTrace();
         }
+
+
+         */
 
         /*
         //Program 5 -- Checking Accounts

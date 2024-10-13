@@ -6,8 +6,8 @@ Program: Bank Account Class
 
 import java.util.Random;
 
-abstract class Account {
-    private String accountNumber;
+abstract class Account extends ProgramTest {
+    private static String accountNumber;
     private String accountHolderName;
     private double balance;
 
@@ -17,11 +17,12 @@ abstract class Account {
         this.accountHolderName = accountHolderName;
         this.balance = balance;
     }
+
     //
     public Account(String accountHolderName){
         this.accountNumber = String.valueOf(generateAccountNumber());
         this.accountHolderName = accountHolderName;
-        this.balance = 0.0;
+        this.balance = 1000.00;
     }
 
     //Account Number Generator
@@ -30,7 +31,7 @@ abstract class Account {
         return 100000000000L + (long) (random.nextDouble() * 900000000000L);
     }
     //Account Number Get
-    public String getAccountNumber() {
+    public static String getAccountNumber() {
         return accountNumber;
     }
     //Set Account Number
@@ -53,6 +54,7 @@ abstract class Account {
             System.out.println("Account Number: " + getAccountNumber());
             System.out.println("Account Name: " + getAccountName());
             System.out.println("Balance: " + getBalance());
+            System.out.println("\n");
     }
     //Balance
     public double getBalance() {
